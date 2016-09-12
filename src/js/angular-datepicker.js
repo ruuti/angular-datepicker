@@ -286,8 +286,8 @@
 
             var i
               , limitDate = new Date(year, month, 0).getDate()
-              , firstDayMonthNumber = new Date(year + '/' + month + '/' + 1).getDay()
-              , lastDayMonthNumber = new Date(year + '/' + month + '/' + limitDate).getDay()
+              , firstDayMonthNumber = (new Date(year + '/' + month + '/' + 1).getDay() + 6) % 7
+              , lastDayMonthNumber = (new Date(year + '/' + month + '/' + limitDate).getDay() + 6) % 7
               , prevMonthDays = []
               , nextMonthDays = []
               , howManyNextDays
@@ -703,7 +703,7 @@
         $scope.months = datetime.MONTH;
         $scope.daysInString = ['0', '1', '2', '3', '4', '5', '6'].map(function mappingFunc(el) {
 
-          return $filter('date')(new Date(new Date('06/08/2014').valueOf() + A_DAY_IN_MILLISECONDS * el), 'EEE');
+          return $filter('date')(new Date(new Date('06/09/2014').valueOf() + A_DAY_IN_MILLISECONDS * el), 'EEE');
         });
 
         //create the calendar holder and append where needed
